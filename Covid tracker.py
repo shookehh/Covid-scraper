@@ -1,13 +1,10 @@
 
-from gettext import gettext
 from ssl import Options
 from tokenize import Double
 from unicodedata import digit
 from selenium.webdriver.common.by import By
 from selenium import webdriver
-from bs4 import BeautifulSoup
 from time import sleep
-import html5lib
 
 # YOU NEED TO HAVE AN INTERNET CONNECTION FOR THIS TO WORK (obviously)
 # MADE BY YA BOI LJ
@@ -22,12 +19,18 @@ driver = webdriver.Chrome(chrome_driver, chrome_options=settings)
 
 
 # YOUR TARGET URL
-target = 'https://coronavirus.jhu.edu/region/philippines'
+target = 'https://www.worldometers.info/coronavirus/country/philippines/'
 driver.get(target)
 sleep(1)
 
 # WTF YOU WANT TO DO WITH THAT TARGET URL
 
-cases = driver.find_element(By.XPATH, "//div[@class='RegionOverview_countryOverview__WPnpe']//div//div[@class='ColumnLayout_container__1whCL']")
+casestotal = driver.find_element(By.XPATH, "//div[@class='content-inner']//div[4]")
+casestotdeath = driver.find_element(By.XPATH, "//div[@class='content-inner']//div[5]")
+casesrec = driver.find_element(By.XPATH, "//div[@class='content-inner']//div[6]")
+updates = driver.find_element(By.XPATH, "//div[@id='news_block']")
 
-print(cases.text)
+print(casestotal.text)
+print(casestotdeath.text)
+print(casesrec.text)
+print(updates.text)
